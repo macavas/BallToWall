@@ -55,3 +55,4 @@ MonoBehaviour:
     type: 2}
   deadEffectAnimation: {fileID: 1171142219860340, guid: 9644bfc987922944790fdd39ea0bece8,
     type: 2}
+  cameraShake: {fileID: 0}

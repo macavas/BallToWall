@@ -9,12 +9,17 @@ public class Player : MonoBehaviour {
     public float jumpSpeed;
     public float sideSpeed;
 
+    bool isAlive;
+
 	void Start () {
         rb = GetComponent<Rigidbody2D>();
+        isAlive = true;
 	}
 	
 	
 	void Update () {
+        if (!isAlive) return;
+
         if (Input.GetMouseButtonDown(0))
         {
             if(rb.velocity.x > 0)
@@ -35,9 +40,12 @@ public class Player : MonoBehaviour {
         {
             EffectManager.instance.CreateDeadAnimation(transform.position);
 
+            isAlive = false;
             rb.isKinematic = true;
             rb.velocity = new Vector2(0, 0);
             gameObject.SetActive(false);
+
+            EffectManager.instance.CameraShakeAnimation();
         }
     }
 }

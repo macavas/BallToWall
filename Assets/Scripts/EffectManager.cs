@@ -8,6 +8,7 @@ public class EffectManager : MonoBehaviour {
 
     public GameObject wallHitAnimation;
     public GameObject deadEffectAnimation;
+    public CameraShake cameraShake;
 
 	// Use this for initialization
 	void Start () {
@@ -24,9 +25,21 @@ public class EffectManager : MonoBehaviour {
 
     public void CreateDeadAnimation(Vector2 hitPoint)
     {
-        GameObject effect = Instantiate(deadEffectAnimation, hitPoint, Quaternion.identity);
+        StartCoroutine(CreateDeadAnimationEnumerator(hitPoint));
+    }
 
+    IEnumerator CreateDeadAnimationEnumerator(Vector2 hitPoint)
+    {
+        GameObject effect = Instantiate(deadEffectAnimation, hitPoint, Quaternion.identity);
+        Time.timeScale = .1f;
+        yield return new WaitForSecondsRealtime(1f);
+        Time.timeScale = 1f;
         Destroy(effect, .5f);
+    }
+
+    public void CameraShakeAnimation()
+    {
+        StartCoroutine(cameraShake.Shake(0.2f, 0.15f));
     }
 
 }
