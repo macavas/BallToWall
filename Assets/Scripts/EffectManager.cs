@@ -7,6 +7,7 @@ public class EffectManager : MonoBehaviour {
     public static EffectManager instance;
 
     public GameObject wallHitAnimation;
+    public GameObject deadEffectAnimation;
 
 	// Use this for initialization
 	void Start () {
@@ -18,7 +19,14 @@ public class EffectManager : MonoBehaviour {
     {
         GameObject effect= Instantiate(wallHitAnimation, hitPoint, Quaternion.identity);
 
-        Destroy(effect, 0.23f);
+        Destroy(effect, 0.5f);
+    }
+
+    public void CreateDeadAnimation(Vector2 hitPoint)
+    {
+        GameObject effect = Instantiate(deadEffectAnimation, hitPoint, Quaternion.identity);
+
+        Destroy(effect, .5f);
     }
 
 }

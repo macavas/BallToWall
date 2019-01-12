@@ -5,11 +5,18 @@ using UnityEngine;
 public class Obstacles : MonoBehaviour {
 
     public GameObject triangleObj;
-
+    float space;
+        
 
 	void Start () {
+        if (transform.position.x > 0)
+            space = -.4f;
+        else
+            space = +.4f;
+
         initObstacles();
-	}
+        
+    }
 
     void initObstacles()
     {
@@ -24,7 +31,7 @@ public class Obstacles : MonoBehaviour {
         for (int i = -4; i < 5; i++)
         {
             if (i == rand || i == rand2 || rand3 == i) continue;
-            GameObject flagObj = Instantiate(triangleObj, new Vector2(transform.position.x + .4f, i), Quaternion.identity);
+            GameObject flagObj = Instantiate(triangleObj, new Vector2(transform.position.x + space, i), transform.rotation);
             flagObj.transform.SetParent(transform);
         }
     }

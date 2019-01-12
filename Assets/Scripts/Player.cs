@@ -27,9 +27,17 @@ public class Player : MonoBehaviour {
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag.Equals("Wall"))
+        if (collision.gameObject.CompareTag("Wall"))
         {
-            EffectManager.instance.CreateHitWallAnimation(gameObject.transform.position);
+            EffectManager.instance.CreateHitWallAnimation(transform.position);
+        }
+        else if (collision.gameObject.CompareTag("Spike"))
+        {
+            EffectManager.instance.CreateDeadAnimation(transform.position);
+
+            rb.isKinematic = true;
+            rb.velocity = new Vector2(0, 0);
+            gameObject.SetActive(false);
         }
     }
 }
