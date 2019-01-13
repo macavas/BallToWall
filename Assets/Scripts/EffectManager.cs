@@ -39,7 +39,7 @@ public class EffectManager : MonoBehaviour {
 
     public void CameraShakeAnimation()
     {
-        StartCoroutine(cameraShake.Shake(0.2f, 0.15f));
+        StartCoroutine(cameraShake.Shake(0.5f, 0.2f));
     }
 
 }

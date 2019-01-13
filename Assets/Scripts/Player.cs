@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Player : MonoBehaviour {
 
+    public static Player instance;
+
     Rigidbody2D rb;
 
     public float jumpSpeed;
@@ -11,7 +13,11 @@ public class Player : MonoBehaviour {
 
     bool isAlive;
 
-	void Start () {
+	void Awake () {
+        if(instance == null)
+        {
+            instance = this;
+        }
         rb = GetComponent<Rigidbody2D>();
         isAlive = true;
 	}
@@ -28,6 +34,15 @@ public class Player : MonoBehaviour {
                 rb.velocity = new Vector2(-sideSpeed, jumpSpeed);
         }
 	}
+
+    public void resetPosition()
+    {
+        isAlive = true;
+        gameObject.transform.position = new Vector3(0, 2.5f, 0);
+        rb.isKinematic = false;
+        gameObject.SetActive(true);
+        
+    }
 
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -46,6 +61,10 @@ public class Player : MonoBehaviour {
             gameObject.SetActive(false);
 
             EffectManager.instance.CameraShakeAnimation();
+
+            GameManager.instance.endGame();
         }
     }
+
+    
 }

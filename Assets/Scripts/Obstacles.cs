@@ -39,6 +39,7 @@ public class Obstacles : MonoBehaviour {
     private void OnCollisionEnter2D(Collision2D collision)
     {
         initObstacles();
+        GameManager.instance.increaseScore();
     }
 }
 
