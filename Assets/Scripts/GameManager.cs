@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour {
         {
             instance = this;
         }
-
+        BackgroundManager.instance.changeRandomColor();
         startGame();
     }
 
@@ -32,6 +32,10 @@ public class GameManager : MonoBehaviour {
     {
         score++;
         showScore();
+        if(score%5 == 0)
+        {
+            BackgroundManager.instance.changeRandomColor();
+        }
     }
 
     public void startGame()

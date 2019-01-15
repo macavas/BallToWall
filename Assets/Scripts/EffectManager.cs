@@ -9,6 +9,7 @@ public class EffectManager : MonoBehaviour {
     public GameObject wallHitAnimation;
     public GameObject deadEffectAnimation;
     public CameraShake cameraShake;
+    
 
 	// Use this for initialization
 	void Start () {
@@ -42,4 +43,5 @@ public class EffectManager : MonoBehaviour {
         StartCoroutine(cameraShake.Shake(0.5f, 0.2f));
     }
 
+    
 }
